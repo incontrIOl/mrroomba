@@ -1,6 +1,6 @@
 // Programmed for Roomba 560
 // Based upon Will's work here: https://community.particle.io/t/sparkbot-spark-core-roomba/625
-// This code was created using the https://build.particle.io/ web interface.
+
 
 
 void wakeup();
@@ -8,7 +8,7 @@ void stop ();
 void dock();
 void clean();
 
-int roombaControl(String command);
+int rbCtrl(String command);
 
 // Variables
 int ddPin = D0;  // Pin to wakeup Roomba and set Baud Rate
@@ -17,7 +17,7 @@ int ledPin = D7;  // LED on Particle
 // Setup runs everytime on Particle startup
 void setup() {
 
-  Spark.function("roombaControl", roombaControl);  // Publish the roombaControl to Particle API
+  Spark.function("rbCtrl", rbCtrl);  // Publish the rbCtrl to Particle API
 
 // Set Pins and turn on Serial 1 (Rx,Tx)
   pinMode(ddPin,  OUTPUT);
@@ -72,7 +72,7 @@ void clean () {
   Serial1.write(135);
 }
 
-int roombaControl(String command) {
+int rbCtrl(String command) {
 
   wakeup();  //Wakeup the Roomba when a command is received
   
